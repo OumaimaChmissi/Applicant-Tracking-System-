@@ -1,0 +1,46 @@
+<template>
+    <lightning-card >
+      <div class="slds-m-around_medium">
+  <lightning-record-view-form object-api-name={objectApiName} columns="2" record-id={recordId} >
+   
+    <lightning-accordion allow-multiple-sections-open="true"
+    active-section-name={activeSections}	>
+        <lightning-accordion-section name="A" label="Informations Entretien"> 
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2"> 
+            <lightning-output-field field-name="Name"></lightning-output-field>
+            <lightning-output-field field-name="Compte__c"></lightning-output-field>
+            <lightning-output-field field-name="Type__c"></lightning-output-field>
+        </div> <div class="slds-col slds-size_1-of-2"> 
+            <lightning-output-field field-name="Duree__c"></lightning-output-field>
+            <lightning-output-field field-name="Heure_de_l_entretien__c"></lightning-output-field>
+            <lightning-output-field field-name="Job_Num__c"></lightning-output-field></div></div>
+</lightning-accordion-section>
+ 
+    <lightning-accordion-section name="B" label="Personnes Entretien"> 
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-2"> 
+            <lightning-output-field field-name="Candidat__c"></lightning-output-field>
+
+            <lightning-output-field field-name="Nom_du_Jury__c"></lightning-output-field>
+        </div> <div class="slds-col slds-size_1-of-2"> 
+
+             <lightning-output-field field-name="Recruteur_du_Job__c"></lightning-output-field>
+            <lightning-output-field field-name="Demandeur_d_emploi__r"></lightning-output-field>
+        </div></div>
+        </lightning-accordion-section>
+        <lightning-accordion-section name="C" label="Autre"> 
+
+            <lightning-output-field field-name="Commentaires_sur_l_entretien__c"></lightning-output-field></lightning-accordion-section>
+            </lightning-accordion>
+            <!-- <lightning-output-field field-name="Email_de_Candidat__c"></lightning-output-field> 	
+            <lightning-output-field field-name="Email_du_Jury__c"></lightning-output-field>-->
+ 
+  
+ </lightning-record-view-form>
+    </div>
+
+  
+</lightning-card>
+
+</template>

@@ -1,0 +1,125 @@
+<template>
+    <lightning-card
+      
+    >
+    
+        <div class="slds-m-around_medium">
+
+            <lightning-record-view-form
+                object-api-name={objectApiName}
+                record-id={recordId}
+            >
+            <lightning-accordion allow-multiple-sections-open="true"
+            active-section-name={activeSections}	>
+                <lightning-accordion-section name="A" label="Informations"> 
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-2">
+            <label for="nomacc">Nom de Compte Associé </label>
+                <lightning-output-field id="nomacc"  variant="label-hidden"
+                    field-name="AccountId"
+                ></lightning-output-field>
+        </br>
+        
+                <label for="nom">Nom et Prénom </label>
+               <lightning-output-field
+                    field-name="Name" variant="label-hidden" id="nom"
+                ></lightning-output-field>
+            </br>
+
+
+       
+    </br>
+            <label for="sexe">Sexe </label>     
+            <lightning-output-field
+          field-name="Sexe__c" variant="label-hidden" id="sexe"
+      ></lightning-output-field> </br>
+      <label for="datedenaiss">Date de Naissance </label>
+      <lightning-output-field
+      field-name="Birthdate" variant="label-hidden" id="datedenaiss"
+     ></lightning-output-field>  </br>
+         
+     <lightning-output-field
+     field-name="Education__c" 
+
+ ></lightning-output-field>  </br></div>
+ <div class="slds-col slds-size_1-of-2">
+
+            <lightning-output-field 
+            field-name="Record_Typess__c" 
+        ></lightning-output-field>
+                <label for="prop">Propriétaire du Contact  </label>
+                <lightning-output-field
+                field-name="OwnerId" variant="label-hidden" id="prop"
+            ></lightning-output-field>         </br>
+
+            <label for="titre">Titre</label>
+                <lightning-output-field
+                    field-name="Title" variant="label-hidden" id="titre"
+                ></lightning-output-field>  </br>
+                <label for="exp">Expérience</label>
+        
+                <lightning-output-field
+                field-name="Experiences__c" variant="label-hidden" id="exp"
+            ></lightning-output-field> </br>
+            <label for="Skills">Compétences</label>
+            <lightning-output-field
+                field-name="Skills__c" variant="label-hidden" id="Skills"
+            ></lightning-output-field>  </br>
+                <label for="dep">Département</label>
+                <lightning-output-field
+                field-name="Department" variant="label-hidden" id="dep"
+            ></lightning-output-field> </br>
+ </div>
+</div>
+        </lightning-accordion-section>
+
+                <lightning-accordion-section name="B" label="Contact"> 
+
+                <label for="tel">Numéro de Téléphone </label>
+                <lightning-output-field
+                    field-name="Phone" variant="label-hidden" id="tel"
+                ></lightning-output-field>  </br>
+                <label for="email">Email</label>
+                <lightning-output-field
+                    field-name="Email" variant="label-hidden" id="email"
+                ></lightning-output-field> </br>
+              
+       
+     
+    </lightning-accordion-section>
+
+        <lightning-accordion-section name="C" label="Coordonnées"> 
+ 
+         
+    <label for="city">Ville </label>
+    <lightning-output-field
+    field-name="City__c" variant="label-hidden" id="city"
+></lightning-output-field> </br>
+<label for="pays">Pays</label>
+
+<lightning-output-field
+field-name="Country__c" variant="label-hidden" id="pays"
+></lightning-output-field> </br>
+<div class="slds-grid slds-wrap">
+    <div class="slds-col slds-size_1-of-1">
+       
+    </div>
+    <div class="slds-col slds-size_2-of-4">
+        <lightning-map  map-markers={mapMarkers}  
+zoom-level="10"
+list-view="hidden"></lightning-map>
+    </div>
+</div>
+
+ 
+ 
+
+ 
+</lightning-accordion-section>
+</lightning-accordion>   
+</lightning-record-view-form>
+        </div>
+
+      
+    </lightning-card>
+</template>

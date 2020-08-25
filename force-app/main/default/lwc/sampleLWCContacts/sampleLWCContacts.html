@@ -1,0 +1,233 @@
+<template>
+    <lightning-card title="Contacts" icon-name="standard:contact">
+   
+   
+
+         <div class="slds-clearfix">
+            <div class="slds-float_right">
+              
+                     <lightning-button label="Créer un nouveau Contact" variant="brand" onclick={handlePopup}></lightning-button>
+                     
+ 
+        <div class="chart slds-m-around_medium" lwc:dom="manual"></div>
+        <section
+          id="modal"
+          role="dialog"
+          tabindex="-1"
+          aria-labelledby="modal-heading-01"
+          aria-modal="true"
+          aria-describedby="modal-content-id-1"
+          class="slds-modal slds-fade-in-open slds-hide"
+        >
+          <div class="slds-modal__container">
+            <header class="slds-modal__header">
+              <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseModal}>
+                <lightning-icon icon-name="utility:close" variant="inverse" alternative-text="Close" size="medium">
+                </lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+            </button>
+              <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+              Nouveau Contact/Candidat
+              </h2>
+            </header>
+            <div
+              class="slds-modal__content slds-p-around_medium"
+              id="modal-content-id-1"
+            >
+              <div class="slds-p-bottom_small slds-p-left_small" style="width:200px">
+                <lightning-card >
+                  <div class="slds-section slds-is-open">
+                     
+                    <div aria-hidden="false" class="slds-section__content">
+                      <lightning-layout multiple-rows="true" vertical-align="end">
+                        <lightning-layout-item size="6" small-device-size="2" medium-device-size="4" large-device-size="4" padding="around-small">
+                                <div class="slds-form-element" >
+                                    <div class="slds-form-element__control"> 
+                                      <center>    
+                                        <div class="slds-m-around_medium" style="width:400px">
+                                   <center>       <lightning-combobox name="recordTypes"
+                                                            
+                                                            value={selectedValue}
+                                                            placeholder="- Séléctionner  le Record Type -"
+                                                            options={options}
+                                                            onchange={handleChange} ></lightning-combobox> </center>
+                                    </div></center>
+                                </div>
+                              </div>
+                        </lightning-layout-item>
+                    </lightning-layout><br/>
+                <div  >
+                    <div if:true={selectedValue}>
+                      <!-- Selected Record Type Id: <b>{selectedValue}</b> -->
+                      <lightning-record-edit-form   object-api-name="Contact" onsuccess={handleSuccess}  record-type-id={selectedValue}>            
+
+                      <div class="slds-m-around_medium" style="width:520px">
+                        <div class="slds-section slds-is-open">
+                          <h3 class="slds-section__title slds-theme_shade">
+                            <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Informations</span>
+                          </h3>
+                          <div aria-hidden="false" class="slds-section__content">
+                        <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-2"> 
+                          
+                        <lightning-input label="Nom Complet" onchange={handleNameChange}  required="required"></lightning-input>
+                    <!--   <lightning-input-field  id="Nom"  field-name='LastName' onchange={handleNameChange}  required="required" variant="label-hidden"> </lightning-input-field>
+                                      <label for="Nom">Nom Complet</label>
+      -->     
+      
+      <label for="sexe">Sexe</label>
+  
+                    <lightning-input-field id="sexe"  field-name='Sexe__c' onchange={handleSexeChange}  variant="label-hidden" > </lightning-input-field>
+                    <label for="BD">Date de Naissance</label>
+                    <lightning-input-field  id="bd" field-name='Birthdate' onchange={handleBirthdateChange}   variant="label-hidden" > </lightning-input-field>
+                   
+                </div>   <div class="slds-col slds-size_1-of-2"> 
+                  <label for="compte">Nom du Compte</label>
+
+                  <lightning-input-field id="compte"  field-name='AccountId' onchange={handleAccountChange} variant="label-hidden"></lightning-input-field>
+                  <label for="titre">Titre</label>
+                    <lightning-input-field id="titre"  field-name='Title' onchange={handleTitleChange} variant="label-hidden"></lightning-input-field>
+                    <label for="dep">Département</label>
+
+                    <lightning-input-field id="dep"  field-name='Department' onchange={handleDepChange}  variant="label-hidden" > </lightning-input-field>
+
+                  </div> 
+                  </div>
+                          </div>
+                          </div>
+
+                          <div class="slds-section slds-is-open">
+                            <h3 class="slds-section__title slds-theme_shade">
+                              <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Contact</span>
+                            </h3>
+                            <div aria-hidden="false" class="slds-section__content">
+                          <div class="slds-grid slds-gutters">
+                          <div class="slds-col slds-size_1-of-2"> 
+<label for="email">Email</label>
+                    <lightning-input-field id="email"   field-name='Email' onchange={handleEmailChange}  variant="label-hidden"   > </lightning-input-field>
+                    </div>                         <div class="slds-col slds-size_1-of-2"> 
+
+                    <label for="tel">Numéro Téléphone</label>
+
+                          <lightning-input-field id="tel"  field-name='Phone' onchange={handlePhoneChange} variant="label-hidden"></lightning-input-field>
+                        </div></div></div></div>
+
+                        <div class="slds-section slds-is-open">
+                          <h3 class="slds-section__title slds-theme_shade">
+                            <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Expériences</span>
+                          </h3>
+                          <div aria-hidden="false" class="slds-section__content">
+                        <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-2"> 
+
+                          <label for="Exp">Expérience</label>
+
+                          <lightning-input-field  id="Exp" field-name='Experiences__c' onchange={handleExperienceChange} variant="label-hidden"> </lightning-input-field>
+                      
+                        </div>                      <div class="slds-col slds-size_1-of-2">
+                      
+                      <lightning-input-field   field-name='Education__c' onchange={handleEducationChange}  > </lightning-input-field>
+                    
+                    </div></div>
+                      <lightning-input-field   field-name='Skills__c' onchange={handleSkillsChange}  > </lightning-input-field>
+                      </div></div>
+                      <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title slds-theme_shade">
+                          <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Coordonnées</span>
+                        </h3>
+                        <div aria-hidden="false" class="slds-section__content">
+                      <div class="slds-grid slds-gutters">
+                      <div class="slds-col slds-size_1-of-2"> 
+
+                          <label for="ville">Ville</label>
+                          <lightning-input-field id="ville"  field-name='City__c' onchange={handleCityChange}   variant="label-hidden"> </lightning-input-field>
+                        </br> 
+                      </div> <div class="slds-col slds-size_1-of-2"> 
+
+                          <label for="pays">Pays</label>
+
+                          <lightning-input-field id="pays"  field-name='Country__c' onchange={handleCountryChange}  variant="label-hidden"  > </lightning-input-field>
+                    </div></div></div></div>
+
+                        
+                    <div class="slds-section slds-is-open">
+                      <h3 class="slds-section__title slds-theme_shade">
+                        <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Autre</span>
+                      </h3>
+                      <div aria-hidden="false" class="slds-section__content"> 
+                    
+                      <lightning-input-field   field-name='Commentaires__c' onchange={handleCommentChange}  > </lightning-input-field> 
+                        </div></div>
+                        <lightning-input-field class="slds-hidden" field-name='Record_Typess__c' value={varr} nchange={handleRecordChange}  variant="label-hidden"  ></lightning-input-field>
+
+                          <center>
+                          <ul class="slds-button-group-row">
+                            <li class="slds-button-group-item">
+                              <button onclick={handleSkip} class="slds-button slds-button_neutral">Annuler
+                              </button>  
+                            </li>
+                        
+                            <li class="slds-button-group-item">
+                              <button onclick={createContact} class="slds-button slds-button_brand">Enregistrer</button>
+                            </li>
+                          </ul>
+                        </center>
+                      </div>
+            
+                    </lightning-record-edit-form> 
+                  </div>
+                  </div>
+                </div>   
+              </div>
+                  </lightning-card>    
+              </div>
+            </div>
+        
+          </div>
+        </section>
+        <div
+          class="slds-backdrop slds-backdrop_open slds-hide modalBackdrops"
+          id="modalBackdrops"
+        ></div>    
+ </div>   
+</div> 
+ 
+        <!-- Data table to diplay accounts -->
+        <div class="table-contacts">
+            <lightning-datatable 
+                data={contacts}
+                columns={columns}
+                key-field="id"
+                max-row-selection={maxRowSelection}
+                show-row-number-column=true
+                onrowselection={getSelectedContact}
+                onrowaction={openRecord}
+                class="ls-datatable"
+                min-column-width="185px">
+            </lightning-datatable>  
+        </div>
+    </lightning-card>
+
+    <template if:true={recordId}>
+        <div class="slds-m-top_small">
+            <lightning-layout>
+                <lightning-layout-item size="8" class="slds-p-right_x-small">
+                    <lightning-card variant="Narrow" title="Contact" icon-name="standard:contact">
+                        <div class="slds-p-horizontal_medium">
+                            <lightning-record-form 
+                                record-id={recordId} 
+                                object-api-name="Contact"
+                                fields={fields}
+                                columns="2"
+                                mode="readonly"     
+                            ></lightning-record-form> 
+                        </div>   
+                    </lightning-card>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" class="slds-p-left_x-small">    
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </template>
+</template>
+ 

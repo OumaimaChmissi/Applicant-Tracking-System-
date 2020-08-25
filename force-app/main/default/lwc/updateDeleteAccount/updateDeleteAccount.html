@@ -1,0 +1,201 @@
+<template>
+
+
+   <!--Button Update-->
+
+
+
+   <ul class="slds-button-group-row">
+    <li class="slds-button-group-item">
+
+<lightning-button label="Modifier le Compte" onclick={handlePopup}></lightning-button>
+<div class="chart slds-m-around_medium" lwc:dom="manual"></div>
+<section
+  id="modal"
+  role="dialog"
+  tabindex="-1"
+  aria-labelledby="modal-heading-01"
+  aria-modal="true"
+  aria-describedby="modal-content-id-1"
+  class="slds-modal slds-fade-in-open slds-hide"
+>
+  <div class="slds-modal__container">
+    <header class="slds-modal__header">
+        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseModal}>
+          <lightning-icon icon-name="utility:close" variant="inverse" alternative-text="Close" size="medium">
+          </lightning-icon>
+          <span class="slds-assistive-text">Close</span>
+      </button>
+        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+          Modifier Compte
+        </h2>
+      </header>   
+    <div
+      class="slds-modal__content slds-p-around_medium"
+      id="modal-content-id-1"
+    >
+      <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+    <!--Form de modification-->
+
+    <lightning-record-edit-form
+    object-api-name={objectApiName}
+    record-id={recordId}
+    onsuccess={handleAccountCreated}
+>
+    <lightning-messages></lightning-messages>
+
+    <!-- <label for="prop" >Propriétaire du Compte</label>
+ <lightning-input-field
+        field-name="OwnerId"  id="prop" variant="label-hidden" 
+    ></lightning-input-field>
+    <label for="name" >Nom du Compte</label>
+    <lightning-input-field
+        field-name="Name" id="name" variant="label-hidden" 
+    ></lightning-input-field>
+    <label for="ad" >Nom du Compte</label>
+
+    <lightning-input-field
+        field-name="ShippingAddress" id="ad" variant="label-hidden" 
+    ></lightning-input-field>
+
+
+    <label for="tel" >Téléphone</label>
+    <lightning-input-field
+        field-name="Phone" id="tel" variant="label-hidden" 
+    ></lightning-input-field>
+    <label for="indus" >Industrie</label>
+    <lightning-input-field
+        field-name="Industry"  id="indus" variant="label-hidden" 
+    ></lightning-input-field>
+    
+    <label for="web" >Site Web</label>
+    <lightning-input-field
+field-name="Website" id="web" variant="label-hidden" 
+></lightning-input-field> -->
+<div class="slds-section slds-is-open">
+  <h3 class="slds-section__title">
+    <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+      <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
+      </svg>
+      <span class="slds-truncate" title="Section Title">Information</span>
+    </button>
+  </h3>
+  <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+
+   <label for="name" >Nom du Compte</label>
+   <lightning-input-field
+       field-name="Name" id="name" variant="label-hidden" 
+   ></lightning-input-field>
+   <label for="type" >Type du Compte</label>
+
+   <lightning-input-field
+   field-name="Type"  id="type" variant="label-hidden" 
+></lightning-input-field>
+<label for="indus" >Industrie</label>
+   <lightning-input-field
+       field-name="Industry"  id="indus" variant="label-hidden" 
+   ></lightning-input-field>
+  </div></div>
+
+  <div class="slds-section slds-is-open">
+    <h3 class="slds-section__title">
+      <button aria-controls="expando-unique-id22" aria-expanded="true" class="slds-button slds-section__title-action">
+        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+          <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
+        </svg>
+        <span class="slds-truncate" title="Section Title">Contact</span>
+      </button>
+    </h3>
+    <div aria-hidden="false" class="slds-section__content" id="expando-unique-id22">
+
+   <label for="tel" >Téléphone</label>
+   <lightning-input-field
+       field-name="Phone" id="tel" variant="label-hidden" 
+   ></lightning-input-field>
+  <label for="web" >Site Web</label>
+   <lightning-input-field
+  field-name="Website" id="web" variant="label-hidden" 
+></lightning-input-field>
+</div></div>
+<!--               -->
+  <div class="slds-section slds-is-open">
+    <h3 class="slds-section__title">
+      <button aria-controls="expando-unique-id2" aria-expanded="true" class="slds-button slds-section__title-action">
+        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+          <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
+        </svg>
+        <span class="slds-truncate" title="Section Title">Adresse</span>
+      </button>
+    </h3>
+    <div aria-hidden="false" class="slds-section__content" id="expando-unique-id2">
+ 
+   <lightning-input-field
+       field-name="ShippingAddress" 
+   ></lightning-input-field>
+  </div></div>
+  
+  <div class="slds-section slds-is-open">
+    <h3 class="slds-section__title">
+      <button aria-controls="expando-unique-id23" aria-expanded="true" class="slds-button slds-section__title-action">
+        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+          <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
+        </svg>
+        <span class="slds-truncate" title="Section Title">Autre</span>
+      </button>
+    </h3>
+    <div aria-hidden="false" class="slds-section__content" id="expando-unique-id23">
+<lightning-input-field
+field-name="Active__c" 
+></lightning-input-field>
+
+<lightning-input-field
+field-name="Revenue__c" 
+></lightning-input-field>
+</div></div>
+    <div class="slds-m-top_medium">
+        <center><button class="slds-button slds-button_neutral" onclick={handleSkip}>
+            Annuler
+           </button>
+        <lightning-button
+            variant="brand"
+            type="submit"
+            name="save"
+            label="Enregistrer"  onclick={handleCloseModal}
+        ></lightning-button>
+    </center>  
+    </div>
+</lightning-record-edit-form>
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+</div>
+</section>
+<div
+class="slds-backdrop slds-backdrop_open slds-hide modalBackdrops"
+id="modalBackdrops"
+></div>
+  
+</li>
+<li class="slds-button-group-item">
+
+
+
+    <!--Button Delete-->
+    <lightning-button
+    label="Supprimer le Compte"
+    class="slds-m-around_medium"
+    onclick={handledelete}
+></lightning-button>
+</li>
+</ul>
+
+</template>

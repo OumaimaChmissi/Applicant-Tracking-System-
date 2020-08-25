@@ -1,0 +1,25 @@
+label {
+
+    font-family:"Arial";
+
+font-size:9pt;
+color:#464646;
+
+}
+.THIS .slds-card__header{
+    background-color: aliceblue;
+}
+.THIS .slds-card__body{
+    background-color: cyan;
+}
+.THIS .slds-card__footer{
+    background-color: aquamarine;
+}
+.slds-modal__header{
+    background-color:  rgb(0, 60, 116);
+    font-style: italic;
+  }
+  .slds-modal__title{
+    color:white
+  }
+  

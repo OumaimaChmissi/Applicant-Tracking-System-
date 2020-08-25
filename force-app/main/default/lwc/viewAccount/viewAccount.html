@@ -1,0 +1,81 @@
+<template>
+    <lightning-card
+       
+    >
+        <div class="slds-m-around_medium">
+            <lightning-record-view-form
+                object-api-name={objectApiName}
+                record-id={recordId}
+            >
+            <lightning-accordion allow-multiple-sections-open="true"
+            active-section-name={activeSections}	>
+                <lightning-accordion-section name="A" label="Informations"> 
+                    <div class="slds-grid slds-gutters"> 
+                        <div class="slds-col slds-size_1-of-2">
+                <lightning-output-field
+                    field-name="AccountId"  
+                ></lightning-output-field>  
+
+                <label for="name" >Nom du Compte</label>
+               <lightning-output-field
+                    field-name="Name" id="name" variant="label-hidden" 
+                ></lightning-output-field> </br>
+
+            <label for="type" >Type du Compte</label>
+               <lightning-output-field
+                    field-name="Type" id="type" variant="label-hidden" 
+                ></lightning-output-field> </br>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <label for="indus" >Industrie</label>
+                <lightning-output-field
+                     field-name="Industry" id="indus" variant="label-hidden"  
+                 ></lightning-output-field> </br>
+
+             
+
+                <label for="prop" >Propriétaire du Compte</label>
+                <lightning-output-field
+                field-name="OwnerId" id="prop" variant="label-hidden" 
+            ></lightning-output-field> </br>
+        </div>
+    </div>
+
+        </lightning-accordion-section>
+
+        <lightning-accordion-section name="B" label="Cordonnées"> 
+                <label for="ad" >Adresse</label>
+               <lightning-output-field
+                field-name="ShippingAddress"   id="ad" variant="label-hidden" 
+            ></lightning-output-field> </br>
+             <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-1">
+                   
+                </div>
+                <div class="slds-col slds-size_2-of-4">
+                    <lightning-map  map-markers={mapMarkers}  
+            zoom-level="10"
+            list-view="hidden"></lightning-map>
+                </div>
+            </div>
+            
+        </lightning-accordion-section>
+        <lightning-accordion-section name="C" label="Contact"> 
+            <label for="tel" >Téléphone</label>
+            <lightning-output-field
+                 field-name="Phone" id="tel" variant="label-hidden" 
+             ></lightning-output-field> </br>
+         <label for="web" >Site Web</label>
+           <lightning-output-field
+            field-name="Website" id="web" variant="label-hidden" 
+        ></lightning-output-field> </br>
+
+    </lightning-accordion-section>
+</lightning-accordion>     
+            </lightning-record-view-form>
+
+        </div>
+
+      
+    </lightning-card>
+</template>

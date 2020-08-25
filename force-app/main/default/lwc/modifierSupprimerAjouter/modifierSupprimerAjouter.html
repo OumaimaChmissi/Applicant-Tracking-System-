@@ -1,0 +1,225 @@
+<template>
+  
+
+    <ul class="slds-button-group-row">
+        <li class="slds-button-group-item">
+
+    <lightning-button label="Modifier le Contact" onclick={handlePopup}></lightning-button>
+    <div class="chart slds-m-around_medium" lwc:dom="manual"></div>
+    <section
+      id="modal"
+      role="dialog"
+      tabindex="-1"
+      aria-labelledby="modal-heading-01"
+      aria-modal="true"
+      aria-describedby="modal-content-id-1"
+      class="slds-modal slds-fade-in-open slds-hide"
+    >
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseModal}>
+              <lightning-icon icon-name="utility:close" variant="inverse" alternative-text="Close" size="medium">
+              </lightning-icon>
+              <span class="slds-assistive-text">Close</span>
+          </button>
+            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+            Modifier Contact/Candidat
+            </h2>
+          </header>   
+        <div
+          class="slds-modal__content slds-p-around_medium"
+          id="modal-content-id-1"
+        >
+          <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+            <lightning-record-edit-form
+                object-api-name={objectApiName}
+                record-id={recordId}
+                onsuccess={handleContactCreated}
+            >
+                <lightning-messages></lightning-messages>
+                <!-- <div class="slds-grid slds-gutters">
+                  <div class="slds-col slds-size_1-of-2">
+                <label for="compte">Compte</label>
+
+                <lightning-input-field id="compte"
+                    field-name="AccountId"  variant="label-hidden"
+                ></lightning-input-field>
+                <label for="nom">Nom Complet</label>
+
+                <lightning-input-field id="nom"
+                    field-name="Name"  variant="label-hidden"
+                ></lightning-input-field>
+                <label for="titre">Titre</label>
+                <lightning-input-field id="titre"
+                    field-name="Title"  variant="label-hidden"
+                ></lightning-input-field>
+                <label for="tel">Téléphone</label>
+
+                <lightning-input-field id="tel"
+                    field-name="Phone"  variant="label-hidden"
+                ></lightning-input-field>
+             
+                <label for="email">Email</label>
+                <lightning-input-field id="email"  variant="label-hidden"
+                    field-name="Email"
+                ></lightning-input-field>
+                <label for="Exp">Expérience</label>
+                <lightning-input-field  id="Exp" field-name='Experiences__c'  variant="label-hidden"> </lightning-input-field>
+             
+              </div>
+              <div class="slds-col slds-size_1-of-2">
+                <lightning-input-field   field-name='Education__c' > </lightning-input-field>
+           
+                <lightning-input-field   field-name='Skills__c' > </lightning-input-field>
+ 
+
+                <lightning-input-field   field-name='Department' > </lightning-input-field>
+                <lightning-input-field   field-name='Sexe__c'> </lightning-input-field>
+                <label for="BD">Date de Naissance</label>
+               <lightning-input-field  id="bd" field-name='Birthdate' variant="label-hidden" > </lightning-input-field>
+                <label for="ville">Ville</label>
+
+                <lightning-input-field id="ville"  field-name='City__c' variant="label-hidden"> </lightning-input-field>
+                <label for="pays">Pays</label>
+
+                <lightning-input-field id="pays"  field-name='Country__c'  variant="label-hidden"  > </lightning-input-field>
+              </div>
+            </div>
+                <lightning-input-field   field-name='Commentaires__c'  > </lightning-input-field> -->
+
+                   <div class="slds-section slds-is-open">
+                    <h3 class="slds-section__title slds-theme_shade">
+                      <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Informations</span>
+                    </h3>
+                    <div aria-hidden="false" class="slds-section__content">
+                  <div class="slds-grid slds-gutters">
+                  <div class="slds-col slds-size_1-of-2"> 
+                    
+                
+              <!--   <lightning-input-field  id="Nom"  field-name='LastName' onchange={handleNameChange}  required="required" variant="label-hidden"> </lightning-input-field>
+                                <label for="Nom">Nom Complet</label>
+-->    
+<label for="Nom">Nom Complet</label>
+
+<lightning-input-field id="Nom" field-name='LastName' variant="label-hidden" ></lightning-input-field> 
+
+<label for="sexe">Sexe</label>
+
+              <lightning-input-field id="sexe"  field-name='Sexe__c'    variant="label-hidden" > </lightning-input-field>
+              <label for="BD">Date de Naissance</label>
+              <lightning-input-field  id="bd" field-name='Birthdate'    variant="label-hidden" > </lightning-input-field>
+             
+          </div>   <div class="slds-col slds-size_1-of-2"> 
+            <label for="compte">Nom du Compte</label>
+
+            <lightning-input-field id="compte"  field-name='AccountId'  variant="label-hidden"></lightning-input-field>
+            <label for="titre">Titre</label>
+              <lightning-input-field id="titre"  field-name='Title'   variant="label-hidden"></lightning-input-field>
+              <label for="dep">Département</label>
+
+              <lightning-input-field id="dep"  field-name='Department'    variant="label-hidden" > </lightning-input-field>
+
+            </div> 
+            </div>
+                    </div>
+                    </div>
+
+                    <div class="slds-section slds-is-open">
+                      <h3 class="slds-section__title slds-theme_shade">
+                        <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Contact</span>
+                      </h3>
+                      <div aria-hidden="false" class="slds-section__content">
+                    <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-2"> 
+<label for="email">Email</label>
+              <lightning-input-field id="email"   field-name='Email'    variant="label-hidden"   > </lightning-input-field>
+              </div>                         <div class="slds-col slds-size_1-of-2"> 
+
+              <label for="tel">Numéro Téléphone</label>
+
+                    <lightning-input-field id="tel"  field-name='Phone'  variant="label-hidden"></lightning-input-field>
+                  </div></div></div></div>
+
+                  <div class="slds-section slds-is-open">
+                    <h3 class="slds-section__title slds-theme_shade">
+                      <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Expériences</span>
+                    </h3>
+                    <div aria-hidden="false" class="slds-section__content">
+                  <div class="slds-grid slds-gutters">
+                  <div class="slds-col slds-size_1-of-2"> 
+
+                    <label for="Exp">Expérience</label>
+
+                    <lightning-input-field  id="Exp" field-name='Experiences__c'  variant="label-hidden"> </lightning-input-field>
+                
+                  </div>                      <div class="slds-col slds-size_1-of-2">
+                
+                <lightning-input-field   field-name='Education__c'  > </lightning-input-field>
+              
+              </div></div>
+                <lightning-input-field   field-name='Skills__c'  > </lightning-input-field>
+                </div></div>
+                <div class="slds-section slds-is-open">
+                  <h3 class="slds-section__title slds-theme_shade">
+                    <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Coordonnées</span>
+                  </h3>
+                  <div aria-hidden="false" class="slds-section__content">
+                <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2"> 
+
+                    <label for="ville">Ville</label>
+                    <lightning-input-field id="ville"  field-name='City__c'   variant="label-hidden"> </lightning-input-field>
+                  </br> 
+                </div> <div class="slds-col slds-size_1-of-2"> 
+
+                    <label for="pays">Pays</label>
+
+                    <lightning-input-field id="pays"  field-name='Country__c'   variant="label-hidden"  > </lightning-input-field>
+              </div></div></div></div>
+
+                  
+              <div class="slds-section slds-is-open">
+                <h3 class="slds-section__title slds-theme_shade">
+                  <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Autre</span>
+                </h3>
+                <div aria-hidden="false" class="slds-section__content"> 
+              
+                <lightning-input-field   field-name='Commentaires__c'    > </lightning-input-field> 
+                  </div></div>
+            
+                <div class="slds-m-top_medium">
+                   <center><button class="slds-button slds-button_neutral" onclick={handleSkip}>
+                        Annuler
+                       </button>
+                    <lightning-button
+                        variant="brand"
+                        type="submit"
+                        name="save"
+                        label="Enregistrer"  onclick={handleCloseModal}
+                    ></lightning-button>
+                </center>  
+                </div>
+            </lightning-record-edit-form>
+ 
+    </div>
+</div>
+
+</div>
+</section>
+<div
+class="slds-backdrop slds-backdrop_open slds-hide modalBackdrops"
+id="modalBackdrops"
+></div>
+  
+</li>
+<li class="slds-button-group-item">
+  
+    <lightning-button
+            label="Supprimer le Contact"
+            class="slds-m-around_medium"
+            onclick={handledelete}
+        ></lightning-button>   
+    </li>
+    </ul>
+  
+</template>
